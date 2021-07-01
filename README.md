@@ -43,7 +43,6 @@
 
 | Column      | Type       | Options          |
 |-------------|------------|------------------|
-| sold_status | integer    | null:false       |
 | user        | references | foreign_key:true |
 | item        | references | foreign_key:true |
 
@@ -57,12 +56,12 @@
 
 | Column         | Type       | Options          |
 |----------------|------------|------------------|
-| zip_code       | integer    | null:false       |
-| prefectures    | string     | null:false       |
+| zip_code       | string     | null:false       |
+| prefectures_id | integer    | null:false       |
 | municipality   | string     | null:false       |
 | street_address | string     | null:false       |
 | building_name  | string     |                  |
-| phone_number   | integer    | null:false       |
+| phone_number   | string     | null:false       |
 | order          | references | foreign_key:true |
 
 
