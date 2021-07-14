@@ -5,8 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
-
-  validates :nickname, presence: true
+  
+  with_options presence: true do
+    validates :nickname
+    validates :birthday
+  end
 
   with_options presence: true,
                format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/,
@@ -22,7 +25,6 @@ class User < ApplicationRecord
     validates :first_name_kana,    presence: true
   end
 
-  validates :birthday,           presence: true
-
-  validates_format_of :password, with: PASSWORD_REGEX, message: 'is invalid. Include both letters and numbers'
+    validates_format_of :password, with: PASSWORD_REGEX, message: 'is invalid. Include both letters and numbers'
+    
 end
