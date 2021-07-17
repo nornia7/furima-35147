@@ -12,7 +12,7 @@ class Item < ApplicationRecord
 
 
   with_options presence: true, 
-               numericality: { other_than 0, message: "can't be blank" 
+               numericality: { other_than:0, message: "can't be blank" 
                                } do
     validates :category
     validates :status
