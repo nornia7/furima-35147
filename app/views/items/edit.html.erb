@@ -1,6 +1,6 @@
 <%# cssは商品出品のものを併用しています。
 app/assets/stylesheets/items/new.css %>
-<%= javascript_pack_tag 'item/new' %>
+<%= javascript_pack_tag 'item/new_edit' %>
 <div class="items-sell-contents">
   <header class="items-sell-header">
     <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
@@ -9,7 +9,7 @@ app/assets/stylesheets/items/new.css %>
     <h2 class="items-sell-title">商品の情報を入力</h2>
     <%= form_with model: @item, local: true do |f| %>
 
-    <% render 'shared/error_messages', model: f.object %>
+    <%= render 'shared/error_messages', model: f.object %>
 
     <%# 商品画像 %>
     <div class="img-upload">
@@ -104,13 +104,13 @@ app/assets/stylesheets/items/new.css %>
         <div class="price-content">
           <span>販売手数料 (10%)</span>
           <span>
-            <span id='add-tax-price'></span>円
+            <span id='add-tax-price'>0</span>円
           </span>
         </div>
         <div class="price-content">
           <span>販売利益</span>
           <span>
-            <span id='profit'></span>円
+            <span id='profit'>0</span>円
           </span>
         </div>
       </div>
@@ -139,7 +139,7 @@ app/assets/stylesheets/items/new.css %>
     <%# 下部ボタン %>
     <div class="sell-btn-contents">
       <%= f.submit "変更する" ,class:"sell-btn" %>
-      <%=link_to 'もどる', "#", class:"back-btn" %>
+      <%=link_to 'もどる', item_path(@item), class:"back-btn" %>
     </div>
     <%# /下部ボタン %>
   </div>
