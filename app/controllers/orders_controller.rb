@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :move_root_path, only: [:index, :create]
 
   def index
     @order_shipping = OrderShipping.new
@@ -33,6 +35,12 @@ class OrdersController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def move_root_path
+    if @item.user.id == current_user.id || @item.order != nil
+      redirect_to root_path
+    end
   end
   
 end
