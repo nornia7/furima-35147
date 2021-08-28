@@ -6,10 +6,10 @@ class OrderShipping
     validates :user_id
     validates :item_id
     validates :zip_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-    validates :prefectures_id, numericality: { other_than: 0, message: "can't be blank" }
+    validates :prefectures_id, numericality: {other_than: 0, message: "can't be blank"}
     validates :municipality
     validates :street_address
-    validates :phone_number, numericality: { only_integer: true, max_length: 11}
+    validates :phone_number, length: {maximum: 11}, numericality: {only_integer: true}
     validates :token
   end
 
