@@ -22,10 +22,15 @@ RSpec.describe OrderShipping, type: :model do
     end
 
     context '内容に問題がある場合' do
-      it 'ログイン状態でなければ購入できない' do
+      it 'user_idが 空 では登録できない' do
         @order_shipping.user_id = nil
         @order_shipping.valid?
         expect(@order_shipping.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが 空 では登録できない' do
+        @order_shipping.item_id = nil
+        @order_shipping.valid?
+        expect(@order_shipping.errors.full_messages).to include("Item can't be blank")
       end
       it 'クレジットカード情報が正しくない(tokenが含まれていない)と保存できない' do
         @order_shipping.token = ''
@@ -66,6 +71,11 @@ RSpec.describe OrderShipping, type: :model do
         @order_shipping.phone_number = '090123456789'
         @order_shipping.valid?
         expect(@order_shipping.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+      end
+      it '電話番号が 9桁 以下だと登録できない' do
+        @order_shipping.phone_number = '090123456'
+        @order_shipping.valid?
+        expect(@order_shipping.errors.full_messages).to include("Phone number is too short (minimum is 10 characters)")
       end
       it '電話番号が 数字 以外だと登録できない' do
         @order_shipping.phone_number = 'あいうアイウABC'
