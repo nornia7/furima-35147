@@ -9,7 +9,7 @@ class OrderShipping
     validates :prefectures_id, numericality: {other_than: 0, message: "can't be blank"}
     validates :municipality
     validates :street_address
-    validates :phone_number, length: {maximum: 11}, numericality: {only_integer: true}
+    validates :phone_number, length: {in: 10..11}, numericality: {only_integer: true}
     validates :token
   end
 
